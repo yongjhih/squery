@@ -96,8 +96,6 @@ public final class Sqluery {
     public static final String LIKE          = "LIKE";
     public static final String NOT_LIKE          = "NOT LIKE";
 
-    private String mAppendOp;
-
     public Sqluery() {
         selection = "";
         selectionArgs = new String[0];
@@ -195,11 +193,6 @@ public final class Sqluery {
         }
 
         out.orderBy = builder.toString();
-        if (mAppendOp != null) {
-            String op = mAppendOp;
-            mAppendOp = null;
-            return append(this, op, out);
-        }
         return out;
     }
 
@@ -289,14 +282,6 @@ public final class Sqluery {
 
     public static Sqluery and(Sqluery... builders) {
         return append(AND, builders);
-    }
-
-    public Sqluery and() {
-        mAppendOp = AND;
-    }
-
-    public Sqluery or() {
-        mAppendOp = OR;
     }
 
     private static Sqluery append(String op, Sqluery... builders) {
