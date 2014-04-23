@@ -39,10 +39,8 @@ import java.util.List;
  *     Sqluery.or(
  *         Sqluery.and(
  *             Sqluery.in(Place.LOCATION, getIds(locations),
- *             Sqluery.like(Place.NAME, pattern))
- *         ),
- *         Sqluery.notEqual(Place.NAME, pattern)
- *     )
+ *             Sqluery.like(Place.NAME, pattern))),
+ *         Sqluery.notEqual(Place.NAME, pattern))
  *
  * final SqlectionBuilder selection =
  *     Sqluery.get(
@@ -213,11 +211,11 @@ public final class Sqluery {
         final Sqluery out = new Sqluery();
 
         if (safe) {
-            out.selection = "(" + field + " " + op + " ?" + ") ";
+            out.selection = "(" + field + " " + op + " ?" + ")";
             out.selectionArgs = new String[1];
             out.selectionArgs[0] = String.valueOf(selectionArg);
         } else {
-            out.selection = "(" + field + " " + op + " " + String.valueOf(selectionArg) + ") ";
+            out.selection = "(" + field + " " + op + " " + String.valueOf(selectionArg) + ")";
             out.selectionArgs = new String[0];
         }
 
@@ -254,14 +252,14 @@ public final class Sqluery {
                 buf.append(",");
         }
 
-        buf.append(") ");
+        buf.append(")");
 
-        out.selection = "(" + buf.toString() + ") ";
+        out.selection = "(" + buf.toString() + ")";
 
         return out;
     }
 
-    public static Sqluery[] like(String field, String op, List<?> selectionArgs) {
+    public static Sqluery[] like(String field, List<?> selectionArgs) {
         List<Sqluery> builders = new ArrayList<Sqluery>();
         for (Object object : selectionArgs) {
             builders.add(Sqluery.like(field, object));
@@ -307,18 +305,20 @@ public final class Sqluery {
             builder = append(builder, op, builders[i]);
         }
 
-        builder.selection = "(" + builder.selection + ") ";
+        builder.selection = "(" + builder.selection + ")";
 
         return builder;
     }
 
     private static Sqluery append(Sqluery builder, String op, Sqluery anotherbuilder) {
-        builder.selection = builder.selection + op + anotherbuilder.selection;
+        builder.selection = builder.selection + " " + op + " " + anotherbuilder.selection;
 
-        final List<String> s = Arrays.asList(builder.selectionArgs);
-        final List<String> s1 = Arrays.asList(anotherbuilder.selectionArgs);
+        List<String> s = new ArrayList<String>();
+        List<String> s1 = Arrays.asList(builder.selectionArgs);
+        List<String> s2 = Arrays.asList(anotherbuilder.selectionArgs);
 
         s.addAll(s1);
+        s.addAll(s2);
         builder.selectionArgs = s.toArray(new String[0]);
 
         return builder;
