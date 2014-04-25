@@ -67,7 +67,10 @@ import java.util.List;
 
 */
 
-public final class Sqluery {
+public class Sqluery {
+    public static class $ extends Sqluery {
+    }
+
     public String selection;
     public String[] selectionArgs;
     public String orderBy;
