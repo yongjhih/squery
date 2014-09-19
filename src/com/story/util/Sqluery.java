@@ -7,65 +7,52 @@ import java.util.List;
 //import android.database.sqlite.SQLiteQueryBuilder;
 
 /**
- * The selection and selectionArgs helper, SQLiteQueryBuilder.appendWhere(where) whereClause alternative
+ * The selection and selectionArgs helper, SQLiteQueryBuilder.appendWhere(where) whereClause alternative.
  *
  * Purpose
  *
- * To generate sql string of selection and selectionArgs from String[]/List<?> selectionArgs
+ * To generate sql string of selection and selectionArgs from String[]/List<?> selectionArgs.
  *
  * For example:
  *
- *     (selection) op (selectionArgs)
- *     (?, ?, ?, ...) op (a, b, c, ...);
- *     (age between 10 and 20 AND height = 60) OR (sex = 'F')
+ *     (A = 1 and B = 2) OR (C = 3)
  *
- * String selection = "arg1 = ? and arg2 = ?" ...
+ * String selection = "(A = ? and B = ?) OR (C = ?)";
+ * selectionArgs[0] = "1";
+ * selectionArgs[1] = "2";
+ * selectionArgs[2] = "3";
  *
- * and the selectionArgs is String array, so the selection values are given here:
+ * The structured expression:
  *
- * selectionArgs[0] = "value of arg1";
- * selectionArgs[1] = "value of arg2";
+ * final Sqluery selection =
+ *     $.or(
+ *         $.and(
+ *             $.in(Place.LOCATION, getIds(locations)),
+ *             $.like(Place.NAME, pattern)
+ *         ),
+ *         $.notEqual(Place.NAME, pattern)
+ *     );
  *
- * String selection = "Age between ? and ? and Height = ?";
- * selectionArgs[0] = "10";
- * selectionArgs[1] = "20";
- * selectionArgs[2] = "168";
+ * The cascaded expression:
  *
- *
- *
- *  *
- *
- * final SqlectionBuilder selection =
- *     Sqluery.or(
- *         Sqluery.and(
- *             Sqluery.in(Place.LOCATION, getIds(locations),
- *             Sqluery.like(Place.NAME, pattern))),
- *         Sqluery.notEqual(Place.NAME, pattern))
- *
- * final SqlectionBuilder selection =
- *     Sqluery.get(
- *         Sqluery.in(Place.LOCATION, getIds(locations))
+ * final Sqluery selection =
+ *     new $(
+ *         $.in(Place.LOCATION, getIds(locations))
  *         .and()
  *         .like(Place.NAME, pattern)
  *     ).or(
- *         Sqluery.notEqual(Place.NAME, pattern)
- *     )
+ *         $.notEqual(Place.NAME, pattern)
+ *     );
  *
- *
+ * SqlectionBuilder
  * Sqluery
  * Selector
  * Sql
- * Sql8
- * Octuery
- *
- *
+ * WhereClause
+ * Where
+ * Clause
+ * Selection
  */
-
-
-/*
-((A) and (B)) or (C)
-
-*/
 
 public class Sqluery {
     public static class $ extends Sqluery {
