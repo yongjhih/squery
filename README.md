@@ -64,13 +64,13 @@ For example:
 Pseudo cascaded expression:
 
 ```java
-lt(A, 1).and(gt(B, 2).or().like(c, 3))
+lt(A, 1).and(gt(B, 2).or().like(C, 3))
 ```
 
 Pseudo structured expression:
 
 ```java
-lt(A, 1).and(or(gt(B, 2), like(c, 3))))
+lt(A, 1).and(or(gt(B, 2), like(C, 3))))
 ```
 
 ## See Also
