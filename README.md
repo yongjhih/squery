@@ -41,6 +41,38 @@ Squery query = $.or(
 getContentResolver().query(uri, projection, query.selection, query.selectionArgs, sortOrder);
 ```
 
+## TODO
+
+Singleton:
+
+```java
+$.just(A).equal(1).and().just(B).equal(2).or().just(C).notEqual(3);
+```
+
+Cascaded:
+
+```java
+$.equal(A, 1).and().equal(B, 2).or().equal(C, 3);
+```
+
+For example:
+
+```java
+(A < 1) and ((B > 2) or (C like 3))
+```
+
+Pseudo cascaded expression:
+
+```java
+lt(A, 1).and(gt(B, 2).or().like(c, 3))
+```
+
+Pseudo structured expression:
+
+```java
+lt(A, 1).and(or(gt(B, 2), like(c, 3))))
+```
+
 ## See Also
 
 ref. https://gist.github.com/yongjhih/e68184ec75d56d9e2804
