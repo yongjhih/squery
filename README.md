@@ -1,3 +1,5 @@
+[![8Query](art/8Query.png)](art/8Query.png)
+
 # 8Query
 
 The selection and selectionArgs helper, `SQLiteQueryBuilder.appendWhere(where)` whereClause alternative.
