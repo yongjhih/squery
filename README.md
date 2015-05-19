@@ -22,12 +22,14 @@ getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder)
 ```
 
 ```java
+import com.infstory.squery.Squery.$;
+
 Squery query = $.or(
         $.and(
             $.equal("A", 1),
             $.like("B", 2)
         ),
-        $.notEqual(C, 3)
+        $.notEqual("C", 3)
     );
 
 getContentResolver().query(uri, projection, query.selection, query.selectionArgs, sortOrder);
