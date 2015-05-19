@@ -35,6 +35,10 @@ Squery query = $.or(
 getContentResolver().query(uri, projection, query.selection, query.selectionArgs, sortOrder);
 ```
 
+## See Also
+
+ref. https://gist.github.com/yongjhih/e68184ec75d56d9e2804
+
 ## License
 
 ```
