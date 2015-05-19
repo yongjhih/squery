@@ -1,4 +1,6 @@
-# Squery
+# sQuery
+
+8Query
 
 The selection and selectionArgs helper, `SQLiteQueryBuilder.appendWhere(where)` whereClause alternative.
 
