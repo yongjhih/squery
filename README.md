@@ -17,7 +17,7 @@ For example:
 Before
 
 ```java
-String selection = "(A = ? and B = ?) OR (C = ?)";
+String selection = "(A = ? and B = ?) OR (C != ?)";
 selectionArgs[0] = "1";
 selectionArgs[1] = "2";
 selectionArgs[2] = "3";
@@ -33,7 +33,7 @@ import com.infstory.squery.Squery.$;
 Squery query = $.or(
         $.and(
             $.equal("A", 1),
-            $.like("B", 2)
+            $.equal("B", 2)
         ),
         $.notEqual("C", 3)
     );
