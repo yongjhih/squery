@@ -4,9 +4,11 @@ The selection and selectionArgs helper, `SQLiteQueryBuilder.appendWhere(where)` 
 
 To generate sql string of selection and selectionArgs from `String[]`/`List<?>` selectionArgs.
 
+## Usage
+
 For example:
 
-```
+```java
     (A = 1 and B = 2) OR (C = 3)
 ```
 
@@ -15,32 +17,20 @@ String selection = "(A = ? and B = ?) OR (C = ?)";
 selectionArgs[0] = "1";
 selectionArgs[1] = "2";
 selectionArgs[2] = "3";
+
+getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
 ```
 
-The structured expression:
-
 ```java
-final Squery selection =
-    $.or(
+Squery query = $.or(
         $.and(
-            $.in(Place.LOCATION, getIds(locations)),
-            $.like(Place.NAME, pattern)
+            $.equal("A", 1),
+            $.like("B", 2)
         ),
-        $.notEqual(Place.NAME, pattern)
+        $.notEqual(C, 3)
     );
-```
 
-The cascaded expression:
-
-```java
-final Squery selection =
-    new $(
-        $.in(Place.LOCATION, getIds(locations))
-        .and()
-        .like(Place.NAME, pattern)
-    ).or(
-        $.notEqual(Place.NAME, pattern)
-    );
+getContentResolver().query(uri, projection, query.selection, query.selectionArgs, sortOrder);
 ```
 
 ## License
