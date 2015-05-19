@@ -12,6 +12,8 @@ For example:
     (A = 1 and B = 2) OR (C = 3)
 ```
 
+Before
+
 ```java
 String selection = "(A = ? and B = ?) OR (C = ?)";
 selectionArgs[0] = "1";
@@ -20,6 +22,8 @@ selectionArgs[2] = "3";
 
 getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
 ```
+
+After
 
 ```java
 import com.infstory.squery.Squery.$;
