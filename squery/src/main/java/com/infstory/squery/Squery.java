@@ -1,4 +1,4 @@
-package com.story.util;
+package com.infstory.squery;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +24,7 @@ import java.util.List;
  *
  * The structured expression:
  *
- * final Sqluery selection =
+ * final Squery selection =
  *     $.or(
  *         $.and(
  *             $.in(Place.LOCATION, getIds(locations)),
@@ -35,7 +35,7 @@ import java.util.List;
  *
  * The cascaded expression:
  *
- * final Sqluery selection =
+ * final Squery selection =
  *     new $(
  *         $.in(Place.LOCATION, getIds(locations))
  *         .and()
@@ -45,7 +45,8 @@ import java.util.List;
  *     );
  *
  * SqlectionBuilder
- * Sqluery
+ * Squery
+ * Squery
  * Selector
  * Sql
  * WhereClause
@@ -54,8 +55,8 @@ import java.util.List;
  * Selection
  */
 
-public class Sqluery {
-    public static class $ extends Sqluery {
+public class Squery {
+    public static class $ extends Squery {
     }
 
     public String selection;
@@ -86,88 +87,88 @@ public class Sqluery {
     public static final String LIKE          = "LIKE";
     public static final String NOT_LIKE          = "NOT LIKE";
 
-    public Sqluery() {
+    public Squery() {
         selection = "";
         selectionArgs = new String[0];
         orderBy = "";
     }
 
-    public Sqluery(Sqluery builder) {
+    public Squery(Squery builder) {
         selection = builder.selection;
         selectionArgs = builder.selectionArgs;
         orderBy = builder.orderBy;
     }
 
-    public static Sqluery isNull(String field) {
+    public static Squery isNull(String field) {
         return op(field, IS, NULL, false);
     }
 
-    public static Sqluery isNotNull(String field) {
+    public static Squery isNotNull(String field) {
         return op(field, IS_NOT, NULL, false);
     }
 
-    public static Sqluery equal(String field, Object selectionArg) {
+    public static Squery equal(String field, Object selectionArg) {
         return op(field, EQ, selectionArg);
     }
 
-    public static Sqluery notEqual(String field, Object selectionArg) {
+    public static Squery notEqual(String field, Object selectionArg) {
         return op(field, NQ, selectionArg);
     }
 
-    public static Sqluery lessEqual(String field, Object selectionArg) {
+    public static Squery lessEqual(String field, Object selectionArg) {
         return op(field, LE, selectionArg);
     }
 
-    public static Sqluery lessThan(String field, Object selectionArg) {
+    public static Squery lessThan(String field, Object selectionArg) {
         return op(field, LT, selectionArg);
     }
 
-    public static Sqluery greaterEqual(String field, Object selectionArg) {
+    public static Squery greaterEqual(String field, Object selectionArg) {
         return op(field, GE, selectionArg);
     }
 
-    public static Sqluery greaterThan(String field, Object selectionArg) {
+    public static Squery greaterThan(String field, Object selectionArg) {
         return op(field, GT, selectionArg);
     }
 
-    public static Sqluery notIn(String field, Object selectionArg) {
+    public static Squery notIn(String field, Object selectionArg) {
         return op(field, NOT_IN, selectionArg);
     }
 
-    public static Sqluery in(String field, Object selectionArg) {
+    public static Squery in(String field, Object selectionArg) {
         return op(field, IN, selectionArg);
     }
 
-    public static Sqluery equal(String field, List<?> selectionArgs) {
+    public static Squery equal(String field, List<?> selectionArgs) {
         return op(field, EQ, selectionArgs);
     }
 
-    public static Sqluery notEqual(String field, List<?> selectionArgs) {
+    public static Squery notEqual(String field, List<?> selectionArgs) {
         return op(field, NQ, selectionArgs);
     }
 
-    public static Sqluery lessEqual(String field, List<?> selectionArgs) {
+    public static Squery lessEqual(String field, List<?> selectionArgs) {
         return op(field, LE, selectionArgs);
     }
 
-    public static Sqluery lessThan(String field, List<?> selectionArgs) {
+    public static Squery lessThan(String field, List<?> selectionArgs) {
         return op(field, LT, selectionArgs);
     }
 
-    public static Sqluery greaterEqual(String field, List<?> selectionArgs) {
+    public static Squery greaterEqual(String field, List<?> selectionArgs) {
         return op(field, GE, selectionArgs);
     }
 
-    public static Sqluery greaterThan(String field, List<?> selectionArgs) {
+    public static Squery greaterThan(String field, List<?> selectionArgs) {
         return op(field, GT, selectionArgs);
     }
 
-    public static Sqluery notIn(String field, List<?> selectionArgs) {
+    public static Squery notIn(String field, List<?> selectionArgs) {
         return op(field, NOT_IN, selectionArgs);
     }
 
-    public static Sqluery in(String field, List<?> selectionArgs) {
-        Sqluery out = op(field, IN, selectionArgs);
+    public static Squery in(String field, List<?> selectionArgs) {
+        Squery out = op(field, IN, selectionArgs);
 
         StringBuilder builder = new StringBuilder("");
         if (selectionArgs.isEmpty()) {
@@ -186,12 +187,12 @@ public class Sqluery {
         return out;
     }
 
-    private static Sqluery op(String field, String op, Object selectionArg) {
+    private static Squery op(String field, String op, Object selectionArg) {
         return op(field, op, selectionArg, true);
     }
 
-    private static Sqluery op(String field, String op, Object selectionArg, boolean safe) {
-        final Sqluery out = new Sqluery();
+    private static Squery op(String field, String op, Object selectionArg, boolean safe) {
+        final Squery out = new Squery();
 
         if (safe) {
             out.selection = "(" + field + " " + op + " ?" + ")";
@@ -205,13 +206,13 @@ public class Sqluery {
         return out;
     }
 
-    private static Sqluery op(String field, String op, List<?> selectionArgs) {
+    private static Squery op(String field, String op, List<?> selectionArgs) {
         return op(field, op, selectionArgs, false);
     }
 
-    private static Sqluery op(String field, String op, List<?> selectionArgs,
+    private static Squery op(String field, String op, List<?> selectionArgs,
             boolean safe) {
-        final Sqluery out = new Sqluery();
+        final Squery out = new Squery();
 
         final int num = selectionArgs.size();
 
@@ -242,40 +243,40 @@ public class Sqluery {
         return out;
     }
 
-    public static Sqluery[] like(String field, List<?> selectionArgs) {
-        List<Sqluery> builders = new ArrayList<Sqluery>();
+    public static Squery[] like(String field, List<?> selectionArgs) {
+        List<Squery> builders = new ArrayList<Squery>();
         for (Object object : selectionArgs) {
-            builders.add(Sqluery.like(field, object));
+            builders.add(Squery.like(field, object));
         }
-        return builders.toArray(new Sqluery[0]);
+        return builders.toArray(new Squery[0]);
     }
 
-    public static Sqluery like(String field, Object selectionArg) {
+    public static Squery like(String field, Object selectionArg) {
         return op(field, LIKE, "%" + selectionArg + "%");
     }
 
-    public static Sqluery exactLike(String field, Object selectionArg) {
+    public static Squery exactLike(String field, Object selectionArg) {
         return op(field, LIKE, selectionArg);
     }
 
-    public static Sqluery notLike(String field, Object selectionArg) {
+    public static Squery notLike(String field, Object selectionArg) {
         return op(field, NOT_LIKE, "%" + selectionArg + "%");
     }
 
-    public static Sqluery exactNotLike(String field, Object selectionArg) {
+    public static Squery exactNotLike(String field, Object selectionArg) {
         return op(field, NOT_LIKE, selectionArg);
     }
 
-    public static Sqluery or(Sqluery... builders) {
+    public static Squery or(Squery... builders) {
         return append(OR, builders);
     }
 
-    public static Sqluery and(Sqluery... builders) {
+    public static Squery and(Squery... builders) {
         return append(AND, builders);
     }
 
-    private static Sqluery append(String op, Sqluery... builders) {
-        Sqluery builder = new Sqluery(builders[0]);
+    private static Squery append(String op, Squery... builders) {
+        Squery builder = new Squery(builders[0]);
         for (int i = 1; i < builders.length; i++) {
             builder = append(builder, op, builders[i]);
         }
@@ -285,7 +286,7 @@ public class Sqluery {
         return builder;
     }
 
-    private static Sqluery append(Sqluery builder, String op, Sqluery anotherbuilder) {
+    private static Squery append(Squery builder, String op, Squery anotherbuilder) {
         builder.selection = builder.selection + " " + op + " " + anotherbuilder.selection;
 
         List<String> s = new ArrayList<String>();
