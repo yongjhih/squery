@@ -55,6 +55,13 @@ Cascaded:
 $.equal(A, 1).and().equal(B, 2).or().equal(C, 3);
 ```
 
+```java
+.or( // if block needed
+  $.equal(A, 1).and().equal(B, 2),
+  $.equal(C, 3)
+);
+```
+
 For example:
 
 ```java
