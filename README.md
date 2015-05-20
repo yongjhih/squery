@@ -41,6 +41,34 @@ Squery query = $.or(
 getContentResolver().query(uri, projection, query.selection, query.selectionArgs, sortOrder);
 ```
 
+## Installation
+
+via jcenter
+
+```gradle
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'com.infstory:squery:1.0.0'
+}
+```
+
+Or via jitpack.io
+
+```gradle
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
+
+dependencies {
+    compile 'com.github.yongjhih:squery:1.0.0'
+}
+```
+
 ## TODO
 
 Singleton:
