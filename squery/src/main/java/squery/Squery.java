@@ -19,6 +19,7 @@ package squery;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Collections;
 
 //import android.database.sqlite.SQLiteQueryBuilder;
 
@@ -69,15 +70,219 @@ import java.util.List;
  * Where
  * Clause
  * Selection
+ * Builder.eq() // builde()
+ * $.eq(a, 1).and().eq(b, 2)
+ *
+ * vs.
+ *
+ * $and(
+ *      $.eq(a, 1),
+ *      $.eq(b, 2)
+ *  );
+ *
+ * vs.
+ *
+ * $and().begin()
+ *      $.eq(a, 1),
+ *      $.eq(b, 2)
+ *  .end();
  */
 
 public class Squery {
-    public static class $ extends Squery {
+
+    public static class $ extends Builder {
     }
 
     public String selection;
     public String[] selectionArgs;
     public String orderBy;
+
+    public Squery() {
+        selection = "";
+        selectionArgs = new String[0];
+        orderBy = "";
+    }
+
+    public Squery(Squery squery) {
+        this();
+        append(squery);
+    }
+
+    public Squery(Builder builder) {
+        this();
+        append(builder);
+    }
+
+    public Squery append(Squery squery) {
+        selection += squery.selection + " ";
+
+        List<String> s = new ArrayList<String>();
+        List<String> s1 = Arrays.asList(selectionArgs);
+        List<String> s2 = Arrays.asList(squery.selectionArgs);
+        //List<String> s1 = (selectionArgs != null) ? Arrays.asList(selectionArgs) : Collections.emptyList();
+        //List<String> s2 = (squery.selectionArgs != null) ? Arrays.asList(squery.selectionArgs) : Collections.emptyList();
+
+        s.addAll(s1);
+        s.addAll(s2);
+
+        selectionArgs = s.toArray(new String[0]);
+
+        return this;
+    }
+
+    public Squery append(Builder builder) {
+        selection += builder.selection + " ";
+
+        List<String> s = new ArrayList<String>();
+        List<String> s1 = Arrays.asList(selectionArgs);
+        List<String> s2 = Arrays.asList(builder.selectionArgs);
+        //List<String> s1 = (selectionArgs != null) ? Arrays.asList(selectionArgs) : Collections.emptyList();
+        //List<String> s2 = (builder.selectionArgs != null) ? Arrays.asList(builder.selectionArgs) : Collections.emptyList();
+
+        s.addAll(s1);
+        s.addAll(s2);
+
+        selectionArgs = s.toArray(new String[0]);
+
+        return this;
+    }
+
+    // TODO
+    public Squery[] append(Squery[] squeries) {
+        /*
+        for (Squery squery : squeries) {
+            selection += squery.selection + " ";
+
+            List<String> s = new ArrayList<String>();
+            List<String> s1 = Arrays.asList(selectionArgs);
+            List<String> s2 = Arrays.asList(squery.selectionArgs);
+
+            s.addAll(s1);
+            s.addAll(s2);
+
+            selectionArgs = s.toArray(new String[0]);
+        }
+        */
+
+        return squeries;
+    }
+
+    public Squery isNull(String field) {
+        return append(Builder.isNull(field));
+    }
+
+    public Squery isNotNull(String field) {
+        return append(Builder.isNotNull(field));
+    }
+
+    public Squery equal(String field, Object selectionArg) {
+        return append(Builder.equal(field, selectionArg));
+    }
+
+    public Squery notEqual(String field, Object selectionArg) {
+        return append(Builder.notEqual(field, selectionArg));
+    }
+
+    public Squery lessEqual(String field, Object selectionArg) {
+        return append(Builder.lessEqual(field, selectionArg));
+    }
+
+    public Squery lessThan(String field, Object selectionArg) {
+        return append(Builder.lessThan(field, selectionArg));
+    }
+
+    public Squery greaterEqual(String field, Object selectionArg) {
+        return append(Builder.greaterEqual(field, selectionArg));
+    }
+
+    public Squery greaterThan(String field, Object selectionArg) {
+        return append(Builder.greaterThan(field, selectionArg));
+    }
+
+    public Squery notIn(String field, Object selectionArg) {
+        return append(Builder.notIn(field, selectionArg));
+    }
+
+    public Squery in(String field, Object selectionArg) {
+        return append(Builder.in(field, selectionArg));
+    }
+
+    public Squery equal(String field, List<?> selectionArgs) {
+        return append(Builder.equal(field, selectionArgs));
+    }
+
+    public Squery notEqual(String field, List<?> selectionArgs) {
+        return append(Builder.notEqual(field, selectionArgs));
+    }
+
+    public Squery lessEqual(String field, List<?> selectionArgs) {
+        return append(Builder.lessEqual(field, selectionArgs));
+    }
+
+    public Squery lessThan(String field, List<?> selectionArgs) {
+        return append(Builder.lessThan(field, selectionArgs));
+    }
+
+    public Squery greaterEqual(String field, List<?> selectionArgs) {
+        return append(Builder.greaterEqual(field, selectionArgs));
+    }
+
+    public Squery greaterThan(String field, List<?> selectionArgs) {
+        return append(Builder.greaterThan(field, selectionArgs));
+    }
+
+    public Squery notIn(String field, List<?> selectionArgs) {
+        return append(Builder.notIn(field, selectionArgs));
+    }
+
+    public Squery in(String field, List<?> selectionArgs) {
+        return append(Builder.in(field, selectionArgs));
+    }
+
+    public Squery[] like(String field, List<?> selectionArgs) {
+        return append(Builder.like(field, selectionArgs));
+    }
+
+    public Squery like(String field, Object selectionArg) {
+        return append(Builder.like(field, selectionArg));
+    }
+
+    public Squery exactLike(String field, Object selectionArg) {
+        return append(Builder.exactLike(field, selectionArg));
+    }
+
+    public Squery notLike(String field, Object selectionArg) {
+        return append(Builder.notLike(field, selectionArg));
+    }
+
+    public Squery exactNotLike(String field, Object selectionArg) {
+        return append(Builder.exactNotLike(field, selectionArg));
+    }
+
+    public Squery and() {
+        selection += " " + AND + " ";
+        return this;
+    }
+
+    public Squery or() {
+        selection += " " + OR + " ";
+        return this;
+    }
+
+    // TODO? public static Squery and(Builder... builders)
+
+    public String toSql() {
+        String[] sels = selection.split("\\?");
+        String ret = "";
+
+        for (int i = 0; i < selectionArgs.length; i++) {
+            ret += sels[i] + "'";
+            ret += selectionArgs[i] + "'";
+        }
+        ret += sels[selectionArgs.length];
+
+        return ret;
+    }
 
     public static final String NULL          = "NULL";
     public static final String IS            = "IS";
@@ -101,231 +306,245 @@ public class Squery {
     public static final String NOT_IN        = "NOT IN";
     public static final String IN            = "IN";
     public static final String LIKE          = "LIKE";
-    public static final String NOT_LIKE          = "NOT LIKE";
+    public static final String NOT_LIKE      = "NOT LIKE";
 
-    public Squery() {
-        selection = "";
-        selectionArgs = new String[0];
-        orderBy = "";
-    }
+    public static class Builder {
+        public String selection;
+        public String[] selectionArgs;
+        public String orderBy;
 
-    public Squery(Squery builder) {
-        selection = builder.selection;
-        selectionArgs = builder.selectionArgs;
-        orderBy = builder.orderBy;
-    }
+        public Builder() {
+            selection = "";
+            selectionArgs = new String[0];
+            orderBy = "";
+        }
 
-    public static Squery isNull(String field) {
-        return op(field, IS, NULL, false);
-    }
+        public Builder(Builder builder) {
+            this();
+            selection = builder.selection;
+            selectionArgs = builder.selectionArgs;
+            orderBy = builder.orderBy;
+        }
 
-    public static Squery isNotNull(String field) {
-        return op(field, IS_NOT, NULL, false);
-    }
+        public Builder(Squery squery) {
+            this();
+            selection = squery.selection;
+            selectionArgs = squery.selectionArgs;
+            orderBy = squery.orderBy;
+        }
 
-    public static Squery equal(String field, Object selectionArg) {
-        return op(field, EQ, selectionArg);
-    }
+        public static Squery isNull(String field) {
+            return op(field, IS, NULL, false);
+        }
 
-    public static Squery notEqual(String field, Object selectionArg) {
-        return op(field, NQ, selectionArg);
-    }
+        public static Squery isNotNull(String field) {
+            return op(field, IS_NOT, NULL, false);
+        }
 
-    public static Squery lessEqual(String field, Object selectionArg) {
-        return op(field, LE, selectionArg);
-    }
+        public static Squery equal(String field, Object selectionArg) {
+            return op(field, EQ, selectionArg);
+        }
 
-    public static Squery lessThan(String field, Object selectionArg) {
-        return op(field, LT, selectionArg);
-    }
+        public static Squery notEqual(String field, Object selectionArg) {
+            return op(field, NQ, selectionArg);
+        }
 
-    public static Squery greaterEqual(String field, Object selectionArg) {
-        return op(field, GE, selectionArg);
-    }
+        public static Squery lessEqual(String field, Object selectionArg) {
+            return op(field, LE, selectionArg);
+        }
 
-    public static Squery greaterThan(String field, Object selectionArg) {
-        return op(field, GT, selectionArg);
-    }
+        public static Squery lessThan(String field, Object selectionArg) {
+            return op(field, LT, selectionArg);
+        }
 
-    public static Squery notIn(String field, Object selectionArg) {
-        return op(field, NOT_IN, selectionArg);
-    }
+        public static Squery greaterEqual(String field, Object selectionArg) {
+            return op(field, GE, selectionArg);
+        }
 
-    public static Squery in(String field, Object selectionArg) {
-        return op(field, IN, selectionArg);
-    }
+        public static Squery greaterThan(String field, Object selectionArg) {
+            return op(field, GT, selectionArg);
+        }
 
-    public static Squery equal(String field, List<?> selectionArgs) {
-        return op(field, EQ, selectionArgs);
-    }
+        public static Squery notIn(String field, Object selectionArg) {
+            return op(field, NOT_IN, selectionArg);
+        }
 
-    public static Squery notEqual(String field, List<?> selectionArgs) {
-        return op(field, NQ, selectionArgs);
-    }
+        public static Squery in(String field, Object selectionArg) {
+            return op(field, IN, selectionArg);
+        }
 
-    public static Squery lessEqual(String field, List<?> selectionArgs) {
-        return op(field, LE, selectionArgs);
-    }
+        public static Squery equal(String field, List<?> selectionArgs) {
+            return op(field, EQ, selectionArgs);
+        }
 
-    public static Squery lessThan(String field, List<?> selectionArgs) {
-        return op(field, LT, selectionArgs);
-    }
+        public static Squery notEqual(String field, List<?> selectionArgs) {
+            return op(field, NQ, selectionArgs);
+        }
 
-    public static Squery greaterEqual(String field, List<?> selectionArgs) {
-        return op(field, GE, selectionArgs);
-    }
+        public static Squery lessEqual(String field, List<?> selectionArgs) {
+            return op(field, LE, selectionArgs);
+        }
 
-    public static Squery greaterThan(String field, List<?> selectionArgs) {
-        return op(field, GT, selectionArgs);
-    }
+        public static Squery lessThan(String field, List<?> selectionArgs) {
+            return op(field, LT, selectionArgs);
+        }
 
-    public static Squery notIn(String field, List<?> selectionArgs) {
-        return op(field, NOT_IN, selectionArgs);
-    }
+        public static Squery greaterEqual(String field, List<?> selectionArgs) {
+            return op(field, GE, selectionArgs);
+        }
 
-    public static Squery in(String field, List<?> selectionArgs) {
-        Squery out = op(field, IN, selectionArgs);
+        public static Squery greaterThan(String field, List<?> selectionArgs) {
+            return op(field, GT, selectionArgs);
+        }
 
-        StringBuilder builder = new StringBuilder("");
-        if (selectionArgs.isEmpty()) {
-            builder.append(field);
-        } else {
-            int i = 0;
-            builder.append("CASE " + field + " ");
-            for (Object o : selectionArgs) {
-                builder.append("WHEN " + o.toString() + " THEN " + i + " ");
-                i++;
+        public static Squery notIn(String field, List<?> selectionArgs) {
+            return op(field, NOT_IN, selectionArgs);
+        }
+
+        public static Squery in(String field, List<?> selectionArgs) {
+            Squery out = op(field, IN, selectionArgs);
+
+            StringBuilder builder = new StringBuilder("");
+            if (selectionArgs.isEmpty()) {
+                builder.append(field);
+            } else {
+                int i = 0;
+                builder.append("CASE " + field + " ");
+                for (Object o : selectionArgs) {
+                    builder.append("WHEN " + o.toString() + " THEN " + i + " ");
+                    i++;
+                }
+                builder.append("END");
             }
-            builder.append("END");
+
+            out.orderBy = builder.toString();
+            return out;
         }
 
-        out.orderBy = builder.toString();
-        return out;
-    }
-
-    private static Squery op(String field, String op, Object selectionArg) {
-        return op(field, op, selectionArg, true);
-    }
-
-    private static Squery op(String field, String op, Object selectionArg, boolean safe) {
-        final Squery out = new Squery();
-
-        if (safe) {
-            out.selection = "(" + field + " " + op + " ?" + ")";
-            out.selectionArgs = new String[1];
-            out.selectionArgs[0] = String.valueOf(selectionArg);
-        } else {
-            out.selection = "(" + field + " " + op + " " + String.valueOf(selectionArg) + ")";
-            out.selectionArgs = new String[0];
+        private static Squery op(String field, String op, Object selectionArg) {
+            return op(field, op, selectionArg, true);
         }
 
-        return out;
-    }
-
-    private static Squery op(String field, String op, List<?> selectionArgs) {
-        return op(field, op, selectionArgs, false);
-    }
-
-    private static Squery op(String field, String op, List<?> selectionArgs,
-            boolean safe) {
-        final Squery out = new Squery();
-
-        final int num = selectionArgs.size();
-
-        final StringBuilder buf = new StringBuilder(field + " " + op + " (");
-        if (safe)
-            out.selectionArgs = new String[num];
-        else
-            out.selectionArgs = new String[0];
-
-        for (int i = 0; i < num; i++) {
-            final String s = String.valueOf(selectionArgs.get(i));
+        private static Squery op(String field, String op, Object selectionArg, boolean safe) {
+            final Squery out = new Squery();
 
             if (safe) {
-                buf.append("?");
-                out.selectionArgs[i] = s;
+                out.selection = "(" + field + " " + op + " ?" + ")";
+                out.selectionArgs = new String[1];
+                out.selectionArgs[0] = String.valueOf(selectionArg);
             } else {
-                buf.append(s);
+                out.selection = "(" + field + " " + op + " " + String.valueOf(selectionArg) + ")";
+                out.selectionArgs = new String[0];
             }
 
-            if (i != num - 1)
-                buf.append(",");
+            return out;
         }
 
-        buf.append(")");
-
-        out.selection = "(" + buf.toString() + ")";
-
-        return out;
-    }
-
-    public static Squery[] like(String field, List<?> selectionArgs) {
-        List<Squery> builders = new ArrayList<Squery>();
-        for (Object object : selectionArgs) {
-            builders.add(Squery.like(field, object));
-        }
-        return builders.toArray(new Squery[0]);
-    }
-
-    public static Squery like(String field, Object selectionArg) {
-        return op(field, LIKE, "%" + selectionArg + "%");
-    }
-
-    public static Squery exactLike(String field, Object selectionArg) {
-        return op(field, LIKE, selectionArg);
-    }
-
-    public static Squery notLike(String field, Object selectionArg) {
-        return op(field, NOT_LIKE, "%" + selectionArg + "%");
-    }
-
-    public static Squery exactNotLike(String field, Object selectionArg) {
-        return op(field, NOT_LIKE, selectionArg);
-    }
-
-    public static Squery or(Squery... builders) {
-        return append(OR, builders);
-    }
-
-    public static Squery and(Squery... builders) {
-        return append(AND, builders);
-    }
-
-    private static Squery append(String op, Squery... builders) {
-        Squery builder = new Squery(builders[0]);
-        for (int i = 1; i < builders.length; i++) {
-            builder = append(builder, op, builders[i]);
+        private static Squery op(String field, String op, List<?> selectionArgs) {
+            return op(field, op, selectionArgs, false);
         }
 
-        builder.selection = "(" + builder.selection + ")";
+        private static Squery op(String field, String op, List<?> selectionArgs,
+                boolean safe) {
+            final Squery out = new Squery();
 
-        return builder;
-    }
+            final int num = selectionArgs.size();
 
-    private static Squery append(Squery builder, String op, Squery anotherbuilder) {
-        builder.selection = builder.selection + " " + op + " " + anotherbuilder.selection;
+            final StringBuilder buf = new StringBuilder(field + " " + op + " (");
+            if (safe)
+                out.selectionArgs = new String[num];
+            else
+                out.selectionArgs = new String[0];
 
-        List<String> s = new ArrayList<String>();
-        List<String> s1 = Arrays.asList(builder.selectionArgs);
-        List<String> s2 = Arrays.asList(anotherbuilder.selectionArgs);
+            for (int i = 0; i < num; i++) {
+                final String s = String.valueOf(selectionArgs.get(i));
 
-        s.addAll(s1);
-        s.addAll(s2);
-        builder.selectionArgs = s.toArray(new String[0]);
+                if (safe) {
+                    buf.append("?");
+                    out.selectionArgs[i] = s;
+                } else {
+                    buf.append(s);
+                }
 
-        return builder;
-    }
+                if (i != num - 1)
+                    buf.append(",");
+            }
 
-    public String toSql() {
-        String[] sels = selection.split("\\?");
-        String ret = "";
+            buf.append(")");
 
-        for (int i = 0; i < selectionArgs.length; i++) {
-            ret += sels[i] + "'";
-            ret += selectionArgs[i] + "'";
+            out.selection = "(" + buf.toString() + ")";
+
+            return out;
         }
-        ret += sels[selectionArgs.length];
 
-        return ret;
+        public static Squery[] like(String field, List<?> selectionArgs) {
+            List<Squery> builders = new ArrayList<Squery>();
+            for (Object object : selectionArgs) {
+                builders.add(Builder.like(field, object));
+            }
+            return builders.toArray(new Squery[0]);
+        }
+
+        public static Squery like(String field, Object selectionArg) {
+            return op(field, LIKE, "%" + selectionArg + "%");
+        }
+
+        public static Squery exactLike(String field, Object selectionArg) {
+            return op(field, LIKE, selectionArg);
+        }
+
+        public static Squery notLike(String field, Object selectionArg) {
+            return op(field, NOT_LIKE, "%" + selectionArg + "%");
+        }
+
+        public static Squery exactNotLike(String field, Object selectionArg) {
+            return op(field, NOT_LIKE, selectionArg);
+        }
+
+        public static Squery or(Squery... builders) {
+            return append(OR, builders);
+        }
+
+        public static Squery and(Squery... builders) {
+            return append(AND, builders);
+        }
+
+        private static Squery append(String op, Squery... builders) {
+            Squery builder = new Squery(builders[0]);
+            for (int i = 1; i < builders.length; i++) {
+                builder = append(builder, op, builders[i]);
+            }
+
+            builder.selection = "(" + builder.selection + ")";
+
+            return builder;
+        }
+
+        private static Squery append(Squery builder, String op, Squery anotherbuilder) {
+            builder.selection = builder.selection + " " + op + " " + anotherbuilder.selection;
+
+            List<String> s = new ArrayList<String>();
+            List<String> s1 = Arrays.asList(builder.selectionArgs);
+            List<String> s2 = Arrays.asList(anotherbuilder.selectionArgs);
+
+            s.addAll(s1);
+            s.addAll(s2);
+            builder.selectionArgs = s.toArray(new String[0]);
+
+            return builder;
+        }
+
+        public String toSql() {
+            String[] sels = selection.split("\\?");
+            String ret = "";
+
+            for (int i = 0; i < selectionArgs.length; i++) {
+                ret += sels[i] + "'";
+                ret += selectionArgs[i] + "'";
+            }
+            ret += sels[selectionArgs.length];
+
+            return ret;
+        }
     }
 }
