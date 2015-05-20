@@ -56,10 +56,6 @@ public class Main {
         System.out.println(squery.toString());
         System.out.println(squery.selection + ", " + Arrays.deepToString(squery.selectionArgs));
 
-        squery = $.in("Id", Arrays.asList(1, 2, 3));
-        System.out.println(squery.toString());
-        System.out.println(squery.selection + ", " + Arrays.deepToString(squery.selectionArgs));
-
         squery = $.in("Id", Arrays.asList(1, 2, 3), true);
         System.out.println(squery.toString());
         System.out.println(squery.selection + ", " + Arrays.deepToString(squery.selectionArgs));

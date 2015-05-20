@@ -151,8 +151,8 @@ Parallel execution is an incubating feature.
 (((((A = ?)) AND ((B = ?)))) OR ((C = ?))), [1, 2, 3]
 (Id IN (1,2,3))
 (Id IN (1,2,3)), []
-(Id IN (1,2,3))
-(Id IN (1,2,3)), []
+(Id IN ('1','2','3'))
+(Id IN (?,?,?)), [1, 2, 3]
 ```
 
 ## See Also
