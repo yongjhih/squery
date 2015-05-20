@@ -56,13 +56,13 @@ $.equal(A, 1).and().equal(B, 2).or().equal(C, 3);
 ```
 
 ```java
-.or( // if block needed
+$.or( // if block needed
   $.equal(A, 1).and().equal(B, 2),
   $.equal(C, 3)
 );
 ```
 
-For example:
+For another example:
 
 ```java
 (A < 1) and ((B > 2) or (C like 3))
