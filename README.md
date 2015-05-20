@@ -109,6 +109,40 @@ List<Note> notes = new Select().from(Note.class)
     .execute();
 ```
 
+## Test
+
+```
+$ ./gradlew execute
+Parallel execution is an incubating feature.
+:squery:compileJava
+:squery-app:processResources UP-TO-DATE
+:squery:processResources UP-TO-DATE
+:squery:classes
+:squery:jar
+:squery-app:compileJava
+:squery-app:classes
+:squery-app:execute
+(A = ?)
+(B = ?)
+(C = ?)
+(A = ?) AND (B = ?)  OR (C = ?) 
+1
+2
+3
+(((A = ?) AND (B = ?)  ) OR ((C = ?)))
+1
+2
+3
+(((A = ?) ) AND ((B = ?))) OR (C = ?) 
+1
+2
+3
+(((((A = ?) ) AND ((B = ?))) ) OR ((C = ?)))
+1
+2
+3
+```
+
 ## See Also
 
 ref. https://gist.github.com/yongjhih/e68184ec75d56d9e2804
