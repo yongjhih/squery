@@ -534,6 +534,11 @@ public class Squery {
             return builder;
         }
 
+        @Override
+        public String toString() {
+            return toSql();
+        }
+
         public String toSql() {
             String[] sels = selection.split("\\?");
             String ret = "";

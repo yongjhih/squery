@@ -11,12 +11,16 @@ apply plugin: 'java'
 
 repositories {
     jcenter()
+    maven {
+        url "https://jitpack.io"
+    }
 }
 
 dependencies {
     testCompile 'junit:junit-dep:4.10'
     testCompile 'org.mockito:mockito-core:1.8.5'
     compile project(':squery')
+    //compile 'com.github.yongjhih:squery:1.0.0'
 }
 
 javadoc {

@@ -12,10 +12,13 @@ public class Main {
         Squery squery;
         squery = $.equal("A", 1);
         System.out.println(squery.selection);
+        System.out.println(squery.toSql());
         squery = $.equal("B", 2);
         System.out.println(squery.selection);
+        System.out.println(squery.toSql());
         squery = $.equal("C", 3);
         System.out.println(squery.selection);
+        System.out.println(squery.toSql());
 
         // "A = ? and B = ? OR C = ?"
         // "(A = ?) and (B = ?) OR (C = ?)"
@@ -24,6 +27,7 @@ public class Main {
         for (String p : squery.selectionArgs) {
             System.out.println(p);
         }
+        System.out.println(squery.toSql());
 
         // "(A = ? and B = ?) OR (C = ?)
         //
@@ -35,6 +39,7 @@ public class Main {
         for (String p : squery.selectionArgs) {
             System.out.println(p);
         }
+        System.out.println(squery.toSql());
 
         squery = $.and(
                 $.equal("A", 1),
@@ -44,6 +49,7 @@ public class Main {
         for (String p : squery.selectionArgs) {
             System.out.println(p);
         }
+        System.out.println(squery.toSql());
 
         squery = $.or(
                     $.and(
@@ -56,5 +62,6 @@ public class Main {
         for (String p : squery.selectionArgs) {
             System.out.println(p);
         }
+        System.out.println(squery.toSql());
     }
 }
