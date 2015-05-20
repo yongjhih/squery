@@ -35,7 +35,7 @@ getContentResolver().query(uri, projection, squery.selection, squery.selectionAr
 // String sql = squery.toString(); // (A = '1') AND (B = '2') OR (C = '3')
 ```
 
-For another example:
+For another example about block:
 
 ```java
 (A = 1 and B = 2) OR (C = 3)
@@ -74,6 +74,16 @@ $.or(
 );
 ```
 
+## Operators
+
+```java
+$.in()
+```
+
+```java
+squery = $.in("Id", Arrays.asList("1", "2", "3"));
+System.out.println(squery.toString()); // (Id IN (1,2,3))
+```
 
 ## Installation
 

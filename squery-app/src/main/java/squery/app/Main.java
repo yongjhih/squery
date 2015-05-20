@@ -63,5 +63,11 @@ public class Main {
             System.out.println(p);
         }
         System.out.println(squery.toSql());
+
+        squery = $.in("Id", Arrays.asList("1", "2", "3"));
+        System.out.println(squery.toSql());
+
+        squery = $.in("Id", Arrays.asList(1, 2, 3));
+        System.out.println(squery.toSql());
     }
 }
