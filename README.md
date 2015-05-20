@@ -39,7 +39,9 @@ For another example about block:
 (A = 1 and B = 2) OR (C = 3)
 ```
 
-1.
+It has 3 methods:
+
+1. Structured `or` operator
 
 ```java
 $.or(
@@ -48,7 +50,7 @@ $.or(
 );
 ```
 
-2.
+2. Structured `and` operator
 
 ```java
 $.and(
@@ -60,7 +62,7 @@ $.and(
 ```
 
 
-3.
+3. Structured `or` + `and` operators
 
 ```java
 $.or(
