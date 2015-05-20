@@ -18,9 +18,7 @@ Before:
 
 ```java
 String selection = "(A = ? and B = ?) OR (C = ?)";
-selectionArgs[0] = "1";
-selectionArgs[1] = "2";
-selectionArgs[2] = "3";
+String[] selectionArgs = new String[] { "1", "2", "3" };
 
 getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
 ```
