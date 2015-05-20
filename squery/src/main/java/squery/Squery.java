@@ -515,13 +515,13 @@ public class Squery {
                 builder = append(builder, op, builders[i]);
             }
 
-            builder.selection = "(" + builder.selection + ")";
+            builder.selection = "(" + builder.selection + ")"; // unnecessary?
 
             return builder;
         }
 
         private static Squery append(Squery builder, String op, Squery anotherbuilder) {
-            builder.selection = builder.selection + " " + op + " " + anotherbuilder.selection;
+            builder.selection = "(" + builder.selection + ") " + op + " (" + anotherbuilder.selection + ")";
 
             List<String> s = new ArrayList<String>();
             List<String> s1 = Arrays.asList(builder.selectionArgs);
