@@ -28,7 +28,7 @@ getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder)
 After
 
 ```java
-import com.infstory.squery.Squery.$;
+import squery.Squery.$;
 
 Squery query = $.or(
         $.and(

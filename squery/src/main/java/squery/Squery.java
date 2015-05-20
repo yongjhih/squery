@@ -1,4 +1,4 @@
-package com.infstory.squery;
+package squery;
 
 import java.util.ArrayList;
 import java.util.Arrays;
