@@ -13,14 +13,14 @@ repositories {
     jcenter()
 }
 
-javadoc {
-    //exclude "**/xxx/**"
-}
-
 dependencies {
     testCompile 'junit:junit-dep:4.10'
     testCompile 'org.mockito:mockito-core:1.8.5'
     compile project(':squery')
+}
+
+javadoc {
+    //exclude "**/xxx/**"
 }
 
 test {
