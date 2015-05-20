@@ -28,7 +28,7 @@ getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder)
 After:
 
 ```java
-Squery squery = $.equal(A, 1).and().equal(B, 2).or().equal(C, 3);
+Squery squery = $.equal("A", 1).and().equal("B", 2).or().equal("C", 3);
 
 getContentResolver().query(uri, projection, squery.selection, squery.selectionArgs, sortOrder);
 // whereClause
