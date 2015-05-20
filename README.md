@@ -87,10 +87,6 @@ ref. https://gist.github.com/yongjhih/e68184ec75d56d9e2804
 ## License
 
 ```
-                                 Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
-
    Copyright 2015 8tory, Inc.
 
    Licensed under the Apache License, Version 2.0 (the "License");
