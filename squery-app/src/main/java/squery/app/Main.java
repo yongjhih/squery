@@ -1,6 +1,5 @@
 package squery.app;
 
-import java.util.concurrent.*;
 import java.util.Collections;
 import java.util.Arrays;
 

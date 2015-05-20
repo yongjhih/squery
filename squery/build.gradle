@@ -24,6 +24,10 @@ javadoc {
 
 test {
     testLogging.showStandardStreams = true
+
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
 }
 
 apply from: 'gradle-mvn-push-bintray.gradle'
