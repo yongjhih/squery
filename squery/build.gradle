@@ -15,3 +15,5 @@ repositories {
 
 dependencies {
 }
+
+apply from: 'gradle-mvn-push-bintray.gradle'
