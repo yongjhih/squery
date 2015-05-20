@@ -271,6 +271,11 @@ public class Squery {
 
     // TODO? public static Squery and(Builder... builders)
 
+    @Override
+    public String toString() {
+        return toSql();
+    }
+
     public String toSql() {
         String[] sels = selection.split("\\?");
         String ret = "";
