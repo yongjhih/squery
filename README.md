@@ -79,12 +79,6 @@ List<Note> notes = new Select().from(Note.class)
 
 ## TODO
 
-Singleton:
-
-```java
-$.just(A).equal(1).and().just(B).equal(2).or().just(C).equal(3);
-```
-
 Cascaded:
 
 ```java
@@ -122,6 +116,12 @@ begin(), end():
 lt(A, 1).and().begin()
   .gt(B, 2).or().like(C, 3)
 .end()
+```
+
+Singleton:
+
+```java
+$.just(A).equal().just(1).and().just(B).equal().just(2).or().just(C).equal().just(3);
 ```
 
 ## See Also
