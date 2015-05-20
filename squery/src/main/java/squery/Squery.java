@@ -407,7 +407,17 @@ public class Squery {
         }
 
         public static Squery in(String field, List<?> selectionArgs) {
-            Squery out = op(field, IN, selectionArgs);
+            return in(field, selectionArgs, null);
+        }
+
+        public static Squery in(String field, List<?> selectionArgs, Boolean safe) {
+            Squery out;
+
+            if (safe != null) {
+                out = op(field, IN, selectionArgs, safe);
+            } else {
+                out = op(field, IN, selectionArgs);
+            }
 
             StringBuilder builder = new StringBuilder("");
             if (selectionArgs.isEmpty()) {
