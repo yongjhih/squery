@@ -129,15 +129,15 @@ Parallel execution is an incubating feature.
 1
 2
 3
-(((A = ?) AND (B = ?)  ) OR ((C = ?)))
+(((A = ?) AND (B = ?)) OR ((C = ?)))
 1
 2
 3
-(((A = ?) ) AND ((B = ?))) OR (C = ?) 
+(((A = ?)) AND ((B = ?))) OR (C = ?) 
 1
 2
 3
-(((((A = ?) ) AND ((B = ?))) ) OR ((C = ?)))
+(((((A = ?)) AND ((B = ?)))) OR ((C = ?)))
 1
 2
 3
