@@ -1,3 +1,5 @@
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-8Query-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1846)
+
 [![8Query](art/8Query.png)](art/8Query.png)
 
 # 8Query
