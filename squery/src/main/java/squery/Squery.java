@@ -114,7 +114,7 @@ public class Squery {
     }
 
     public Squery append(Squery squery) {
-        selection += squery.selection + " ";
+        selection += squery.selection;
 
         List<String> s = new ArrayList<String>();
         List<String> s1 = Arrays.asList(selectionArgs);
@@ -131,7 +131,7 @@ public class Squery {
     }
 
     public Squery append(Builder builder) {
-        selection += builder.selection + " ";
+        selection += builder.selection;
 
         List<String> s = new ArrayList<String>();
         List<String> s1 = Arrays.asList(selectionArgs);
@@ -151,7 +151,7 @@ public class Squery {
     public Squery[] append(Squery[] squeries) {
         /*
         for (Squery squery : squeries) {
-            selection += squery.selection + " ";
+            selection += squery.selection;
 
             List<String> s = new ArrayList<String>();
             List<String> s1 = Arrays.asList(selectionArgs);
