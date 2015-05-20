@@ -48,7 +48,19 @@ $.or(
 );
 ```
 
-or 2.
+2.
+
+```java
+$.and(
+    $.equal("A", 1),
+    $.equal("B", 2)
+)
+.or()
+.equal("C", 3);
+```
+
+
+3.
 
 ```java
 $.or(
@@ -58,17 +70,6 @@ $.or(
     ),
     $.equal("C", 3)
 );
-```
-
-or 3.
-
-```java
-$.and(
-    $.equal("A", 1),
-    $.equal("B", 2)
-)
-.or()
-.equal("C", 3);
 ```
 
 
