@@ -128,31 +128,31 @@ $ ./gradlew execute
 Parallel execution is an incubating feature.
 :squery:compileJava
 :squery-app:processResources UP-TO-DATE
+:squery:compileJava UP-TO-DATE
 :squery:processResources UP-TO-DATE
-:squery:classes
-:squery:jar
+:squery:classes UP-TO-DATE
+:squery:jar UP-TO-DATE
 :squery-app:compileJava
 :squery-app:classes
 :squery-app:execute
-(A = ?)
-(B = ?)
-(C = ?)
-(A = ?) AND (B = ?)  OR (C = ?) 
-1
-2
-3
-(((A = ?) AND (B = ?)) OR ((C = ?)))
-1
-2
-3
-(((A = ?)) AND ((B = ?))) OR (C = ?) 
-1
-2
-3
-(((((A = ?)) AND ((B = ?)))) OR ((C = ?)))
-1
-2
-3
+(A = '1')
+(A = ?), [1]
+(B = '2')
+(B = ?), [2]
+(C = '3')
+(C = ?), [3]
+(A = '1') AND (B = '2') OR (C = '3')
+(A = ?) AND (B = ?) OR (C = ?), [1, 2, 3]
+(((A = '1') AND (B = '2')) OR ((C = '3')))
+(((A = ?) AND (B = ?)) OR ((C = ?))), [1, 2, 3]
+(((A = '1')) AND ((B = '2'))) OR (C = '3')
+(((A = ?)) AND ((B = ?))) OR (C = ?), [1, 2, 3]
+(((((A = '1')) AND ((B = '2')))) OR ((C = '3')))
+(((((A = ?)) AND ((B = ?)))) OR ((C = ?))), [1, 2, 3]
+(Id IN (1,2,3))
+(Id IN (1,2,3)), []
+(Id IN (1,2,3))
+(Id IN (1,2,3)), []
 ```
 
 ## See Also
