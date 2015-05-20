@@ -2,9 +2,9 @@
 
 # 8Query
 
-The selection and selectionArgs helper, `SQLiteQueryBuilder.appendWhere(where)` whereClause alternative.
+Easy to build selection and selectionArgs for sql.
 
-To generate sql string of selection and selectionArgs from `String[]`/`List<?>` selectionArgs.
+A `SQLiteQueryBuilder.appendWhere(where)` of whereClause alternative.
 
 ## Usage
 
@@ -30,7 +30,7 @@ After
 ```java
 import squery.Squery.$;
 
-Squery query = $.or(
+Squery squery = $.or(
         $.and(
             $.equal("A", 1),
             $.equal("B", 2)
@@ -38,7 +38,7 @@ Squery query = $.or(
         $.equal("C", 3)
     );
 
-getContentResolver().query(uri, projection, query.selection, query.selectionArgs, sortOrder);
+getContentResolver().query(uri, projection, squery.selection, squery.selectionArgs, sortOrder);
 ```
 
 ## Installation
@@ -67,6 +67,14 @@ repositories {
 dependencies {
     compile 'com.github.yongjhih:squery:1.0.0'
 }
+```
+
+## For ActiveAndroid
+
+```java
+List<Note> notes = new Select().from(Note.class)
+    .where(squery.selection, squery.selectionArgs)
+    .execute();
 ```
 
 ## TODO
