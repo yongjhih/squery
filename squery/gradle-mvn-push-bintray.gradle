@@ -92,6 +92,15 @@ afterEvaluate { project ->
         sign configurations.archives
     }
 
+    task sourceJar(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.allJava
+    }
+
+    artifacts {
+        archives sourceJar
+    }
+
 /*
     task androidJavadocs(type: Javadoc) {
         source = android.sourceSets.main.java.srcDirs
