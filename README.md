@@ -31,6 +31,7 @@ After:
 Squery squery = $.equal(A, 1).and().equal(B, 2).or().equal(C, 3);
 
 getContentResolver().query(uri, projection, squery.selection, squery.selectionArgs, sortOrder);
+// whereClause
 // String sql = squery.toString(); // (A = '1') AND (B = '2') OR (C = '3')
 ```
 
