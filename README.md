@@ -110,10 +110,18 @@ Pseudo cascaded expression:
 lt(A, 1).and(gt(B, 2).or().like(C, 3))
 ```
 
-Pseudo structured expression:
+vs. pseudo structured expression:
 
 ```java
 lt(A, 1).and(or(gt(B, 2), like(C, 3))))
+```
+
+begin(), end():
+
+```java
+lt(A, 1).and().begin()
+  .gt(B, 2).or().like(C, 3)
+.end()
 ```
 
 ## See Also
