@@ -17,7 +17,7 @@ For example:
 Before
 
 ```java
-String selection = "(A = ? and B = ?) OR (C != ?)";
+String selection = "(A = ? and B = ?) OR (C = ?)";
 selectionArgs[0] = "1";
 selectionArgs[1] = "2";
 selectionArgs[2] = "3";
@@ -35,7 +35,7 @@ Squery query = $.or(
             $.equal("A", 1),
             $.equal("B", 2)
         ),
-        $.notEqual("C", 3)
+        $.equal("C", 3)
     );
 
 getContentResolver().query(uri, projection, query.selection, query.selectionArgs, sortOrder);
@@ -46,7 +46,7 @@ getContentResolver().query(uri, projection, query.selection, query.selectionArgs
 Singleton:
 
 ```java
-$.just(A).equal(1).and().just(B).equal(2).or().just(C).notEqual(3);
+$.just(A).equal(1).and().just(B).equal(2).or().just(C).equal(3);
 ```
 
 Cascaded:
