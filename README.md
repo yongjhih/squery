@@ -17,7 +17,7 @@ A = 1 AND B = 2 OR C = 3
 Before:
 
 ```java
-String selection = "(A = ? and B = ?) OR (C = ?)";
+String selection = "A = ? and B = ? OR C = ?";
 String[] selectionArgs = new String[] { "1", "2", "3" };
 
 getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
