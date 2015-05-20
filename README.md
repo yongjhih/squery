@@ -69,7 +69,7 @@ dependencies {
 }
 ```
 
-## For ActiveAndroid
+## For [ActiveAndroid](https://github.com/pardom/ActiveAndroid)
 
 ```java
 List<Note> notes = new Select().from(Note.class)
