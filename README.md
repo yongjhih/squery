@@ -167,7 +167,7 @@ $.brace(
 * 2. begin
 
 ```java
-$.begin().
+$.begin()
   .equal("A", 1).and().equal("B", 2)
   .end()
   .or().equal("C", 3)
