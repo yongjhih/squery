@@ -22,7 +22,7 @@ Before:
 String selection = "A = ? and B = ? OR C = ?";
 String[] selectionArgs = new String[] { "1", "2", "3" };
 
-getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
+getContentResolver().query(uri, projections, selection, selectionArgs, sortOrder);
 ```
 
 After:
@@ -30,9 +30,17 @@ After:
 ```java
 Squery squery = $.equal("A", 1).and().equal("B", 2).or().equal("C", 3);
 
-getContentResolver().query(uri, projection, squery.selection, squery.selectionArgs, sortOrder);
+getContentResolver().query(uri, projections, squery.selection, squery.selectionArgs, sortOrder);
 // whereClause
 // String sql = squery.toString(); // (A = '1') AND (B = '2') OR (C = '3')
+```
+
+Orderby:
+
+```java
+squery = squery.desc("D").asc("E").limit(10);
+
+getContentResolver().query(uri, projections, squery.selection, squery.selectionArgs, squery.orderBy);
 ```
 
 For another example about block:

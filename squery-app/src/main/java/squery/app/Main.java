@@ -21,7 +21,7 @@ public class Main {
 
         // "A = ? and B = ? OR C = ?"
         // "(A = ?) and (B = ?) OR (C = ?)"
-        squery = $.equal("A", 1).and().equal("B", 2).or().equal("C", 3).desc("D").limit(10);
+        squery = $.equal("A", 1).and().equal("B", 2).or().equal("C", 3).desc("D").asc("E").limit(10);
         System.out.println(squery.toString());
         System.out.println(squery.selection + ", " + Arrays.deepToString(squery.selectionArgs));
 
@@ -30,14 +30,14 @@ public class Main {
         squery = $.or(
                 $.equal("A", 1).and().equal("B", 2),
                 $.equal("C", 3)
-                ).desc("D").limit(10);
+                ).desc("D").asc("E").limit(10);
         System.out.println(squery.toString());
         System.out.println(squery.selection + ", " + Arrays.deepToString(squery.selectionArgs));
 
         squery = $.and(
                 $.equal("A", 1),
                 $.equal("B", 2))
-            .or().equal("C", 3).desc("D").limit(10);
+            .or().equal("C", 3).desc("D").asc("E").limit(10);
         System.out.println(squery.toString());
         System.out.println(squery.selection + ", " + Arrays.deepToString(squery.selectionArgs));
 
@@ -47,7 +47,7 @@ public class Main {
                         $.equal("B", 2)
                     ),
                     $.equal("C", 3)
-                ).desc("D").limit(10);
+                ).desc("D").asc("E").limit(10);
         System.out.println(squery.toString());
         System.out.println(squery.selection + ", " + Arrays.deepToString(squery.selectionArgs));
 
