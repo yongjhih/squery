@@ -271,6 +271,29 @@ public class Squery {
 
     // TODO? public static Squery and(Builder... builders)
 
+    public Squery desc(String field) {
+        return orderBy(field, DESC);
+    }
+
+    public Squery asc(String field) {
+        return orderBy(field, ASC);
+    }
+
+    public Squery orderBy(String field, String op) {
+        if (orderBy == null || "".equals(orderBy)) {
+            orderBy = field + " " + op;
+        } else {
+            orderBy += ", " + field + " " + op;
+        }
+
+        return this;
+    }
+
+    public Squery limit(int count) {
+        orderBy += " LIMIT " + count;
+        return this;
+    }
+
     @Override
     public String toString() {
         return toSql();
@@ -285,6 +308,10 @@ public class Squery {
             ret += selectionArgs[i] + "'";
         }
         ret += sels[selectionArgs.length];
+
+        if (orderBy != null && !"".equals(orderBy)) {
+            ret += " ORDERBY " + orderBy;
+        }
 
         return ret;
     }
@@ -312,6 +339,9 @@ public class Squery {
     public static final String IN            = "IN";
     public static final String LIKE          = "LIKE";
     public static final String NOT_LIKE      = "NOT LIKE";
+
+    public static final String DESC          = "DESC";
+    public static final String ASC           = "ASC";
 
     public static class Builder {
         public String selection;
@@ -563,6 +593,10 @@ public class Squery {
                 ret += selectionArgs[i] + "'";
             }
             ret += sels[selectionArgs.length];
+
+            if (orderBy != null && !"".equals(orderBy)) {
+                ret += " ORDERBY " + orderBy;
+            }
 
             return ret;
         }
