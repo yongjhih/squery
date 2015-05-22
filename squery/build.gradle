@@ -30,4 +30,4 @@ test {
     }
 }
 
-apply from: 'gradle-mvn-push-bintray.gradle'
+apply from: 'mvn-push.gradle'

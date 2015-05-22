@@ -97,8 +97,14 @@ afterEvaluate { project ->
         from sourceSets.main.allJava
     }
 
+    task javadocJar(type: Jar) {
+        classifier = 'javadoc'
+        from javadoc
+    }
+
     artifacts {
         archives sourceJar
+        archives javadocJar
     }
 
 /*
