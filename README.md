@@ -119,7 +119,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.infstory:squery:1.0.0'
+    compile 'com.infstory:squery:1.0.1'
 }
 ```
 
@@ -133,7 +133,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.yongjhih:squery:1.0.0'
+    compile 'com.github.yongjhih:squery:1.0.1'
 }
 ```
 
