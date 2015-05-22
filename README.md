@@ -49,8 +49,6 @@ For another example about block:
 (A = 1 and B = 2) OR (C = 3)
 ```
 
-It has 3 methods:
-
 * 1. Structured `or` operator
 
 ```java
@@ -81,6 +79,23 @@ $.or(
     ),
     $.equal("C", 3)
 );
+```
+
+* 4. Use `brace()`
+
+```java
+$.brace(
+    $.equal("A", 1).and().equal("B", 2)
+).or().equal("C", 3);
+```
+
+* 5. Use `begin()` + `end()`
+
+```java
+$.begin()
+  .equal("A", 1).and().equal("B", 2)
+ .end()
+ .or().equal("C", 3);
 ```
 
 ## Operators
@@ -160,26 +175,6 @@ squery.MainTests > testIn PASSED
 ## See Also
 
 ref. https://gist.github.com/yongjhih/e68184ec75d56d9e2804
-
-## TODO
-
-* 1. brace
-
-```java
-$.brace(
-  $.equal("A", 1).and().equal("B", 2)
-)
-.or().equal("C", 3)
-```
-
-* 2. begin
-
-```java
-$.begin()
-  .equal("A", 1).and().equal("B", 2)
-  .end()
-  .or().equal("C", 3)
-```
 
 ## License
 
