@@ -96,6 +96,23 @@ public class Squery {
     public String selection;
     public String[] selectionArgs;
     public String orderBy;
+    public int begin = 0;
+    public int end = 0;
+
+    public String selection() {
+        if (begin != end) throw new RuntimeException("No paired brace");
+        return selection;
+    }
+
+    public String[] selectionArgs() {
+        if (begin != end) throw new RuntimeException("No paired brace");
+        return selectionArgs;
+    }
+
+    public String orderBy() {
+        if (begin != end) throw new RuntimeException("No paired brace");
+        return orderBy;
+    }
 
     public Squery() {
         selection = "";
@@ -294,12 +311,29 @@ public class Squery {
         return this;
     }
 
+    public Squery brace(Squery squery) {
+        return Builder.brace(squery);
+    }
+
+    public Squery begin() {
+        return Builder.begin(this);
+    }
+
+    public Squery end() {
+        selection += ")";
+        end++;
+        return this;
+        // illegal return Builder.end(this);
+    }
+
     @Override
     public String toString() {
         return toSql();
     }
 
     public String toSql() {
+        if (begin != end) throw new RuntimeException("No paired brace");
+
         String[] sels = selection.split("\\?");
         String ret = "";
 
@@ -347,6 +381,8 @@ public class Squery {
         public String selection;
         public String[] selectionArgs;
         public String orderBy;
+        public int begin = 0;
+        public int end = 0;
 
         public Builder() {
             selection = "";
@@ -359,6 +395,8 @@ public class Squery {
             selection = builder.selection;
             selectionArgs = builder.selectionArgs;
             orderBy = builder.orderBy;
+            begin = builder.begin;
+            end = builder.end;
         }
 
         public Builder(Squery squery) {
@@ -366,6 +404,8 @@ public class Squery {
             selection = squery.selection;
             selectionArgs = squery.selectionArgs;
             orderBy = squery.orderBy;
+            begin = squery.begin;
+            end = squery.end;
         }
 
         public static Squery isNull(String field) {
@@ -579,12 +619,40 @@ public class Squery {
             return builder;
         }
 
+        public static Squery brace(Squery squery) {
+            squery.selection = "(" + squery.selection + ")";
+            return squery;
+        }
+
+        public static Squery begin(Squery squery) {
+            squery.selection = "(" + squery.selection;
+            squery.begin++;
+            return squery;
+        }
+
+        public static Squery begin() {
+            return begin(new Squery());
+        }
+
+        /* illegal
+        public static Squery end(Squery squery) {
+            squery.selection = squery.selection + ")";
+            return squery;
+        }
+
+        public static Squery end() {
+            return end(new Squery());
+        }
+        */
+
         @Override
         public String toString() {
             return toSql();
         }
 
         public String toSql() {
+            if (begin != end) throw new RuntimeException("No paired brace");
+
             String[] sels = selection.split("\\?");
             String ret = "";
 

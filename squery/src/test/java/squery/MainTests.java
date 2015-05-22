@@ -104,6 +104,42 @@ public class MainTests {
     }
 
     @Test
+    public void testBrace() {
+        Squery squery;
+        String[] expectedSelectionArgs;
+
+        squery = $.brace(
+                    $.equal("A", 1).and().equal("B", 2)
+                ).or().equal("C", 3);
+
+        System.out.println(squery.toString());
+        System.out.println(squery.selection + ", " + Arrays.deepToString(squery.selectionArgs));
+
+        assertEquals("((A = '1') AND (B = '2')) OR (C = '3')", squery.toString());
+        assertEquals("((A = ?) AND (B = ?)) OR (C = ?)", squery.selection);
+        expectedSelectionArgs = new String[] { "1", "2", "3" };
+        assertArrayEquals(expectedSelectionArgs, squery.selectionArgs);
+    }
+
+    @Test
+    public void testBeginEnd() {
+        Squery squery;
+        String[] expectedSelectionArgs;
+
+        squery = $.begin()
+                    .equal("A", 1).and().equal("B", 2)
+                .end().or().equal("C", 3);
+
+        System.out.println(squery.toString());
+        System.out.println(squery.selection() + ", " + Arrays.deepToString(squery.selectionArgs()));
+
+        assertEquals("((A = '1') AND (B = '2')) OR (C = '3')", squery.toString());
+        assertEquals("((A = ?) AND (B = ?)) OR (C = ?)", squery.selection);
+        expectedSelectionArgs = new String[] { "1", "2", "3" };
+        assertArrayEquals(expectedSelectionArgs, squery.selectionArgs);
+    }
+
+    @Test
     public void testIn() {
     /*
        (Id IN (1,2,3))
