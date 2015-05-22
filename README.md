@@ -1,3 +1,5 @@
+# 8Query
+
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-8Query-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1846)
 ![JitPack](https://img.shields.io/github/tag/yongjhih/squery.svg?label=maven)
 [![Download](https://api.bintray.com/packages/yongjhih/maven/squery/images/download.svg) ](https://bintray.com/yongjhih/maven/squery/_latestVersion)
@@ -6,10 +8,6 @@
 [![Join the chat at https://gitter.im/yongjhih/squery](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/yongjhih/squery?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![8Query](art/8Query.png)](art/8Query.png)
-
-# 8Query
-
-[![Join the chat at https://gitter.im/yongjhih/squery](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/yongjhih/squery?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Easy to build selection and selectionArgs for sql.
 
