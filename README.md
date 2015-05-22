@@ -75,7 +75,7 @@ $.or(
 );
 ```
 
-* 5. Structured `and` operator
+* 4. Structured `and` operator
 
 ```java
 $.and(
