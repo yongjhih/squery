@@ -49,7 +49,24 @@ For another example about block:
 (A = 1 and B = 2) OR (C = 3)
 ```
 
-* 1. Structured `or` operator
+* 1. Use `brace()`
+
+```java
+$.brace(
+    $.equal("A", 1).and().equal("B", 2)
+).or().equal("C", 3);
+```
+
+* 2. Use `begin()` + `end()`
+
+```java
+$.begin()
+  .equal("A", 1).and().equal("B", 2)
+ .end()
+ .or().equal("C", 3);
+```
+
+* 3. Structured `or` operator
 
 ```java
 $.or(
@@ -58,7 +75,7 @@ $.or(
 );
 ```
 
-* 2. Structured `and` operator
+* 5. Structured `and` operator
 
 ```java
 $.and(
@@ -69,7 +86,7 @@ $.and(
 .equal("C", 3);
 ```
 
-* 3. Structured `or` + `and` operators
+* 5. Structured `or` + `and` operators
 
 ```java
 $.or(
@@ -79,23 +96,6 @@ $.or(
     ),
     $.equal("C", 3)
 );
-```
-
-* 4. Use `brace()`
-
-```java
-$.brace(
-    $.equal("A", 1).and().equal("B", 2)
-).or().equal("C", 3);
-```
-
-* 5. Use `begin()` + `end()`
-
-```java
-$.begin()
-  .equal("A", 1).and().equal("B", 2)
- .end()
- .or().equal("C", 3);
 ```
 
 ## Operators
