@@ -54,10 +54,10 @@ For another example about block:
 (A = 1 and B = 2) OR (C = 3)
 ```
 
-* 1. Use `brace()`
+* 1. Use `of()`
 
 ```java
-$.brace(
+$.of(
     $.equal("A", 1).and().equal("B", 2)
 ).or().equal("C", 3);
 ```

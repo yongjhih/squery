@@ -108,7 +108,7 @@ public class MainTests {
         Squery squery;
         String[] expectedSelectionArgs;
 
-        squery = $.brace(
+        squery = $.of(
                     $.equal("A", 1).and().equal("B", 2)
                 ).or().equal("C", 3);
 

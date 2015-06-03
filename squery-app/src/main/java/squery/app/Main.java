@@ -51,7 +51,7 @@ public class Main {
         System.out.println(squery.toString());
         System.out.println(squery.selection + ", " + Arrays.deepToString(squery.selectionArgs));
 
-        squery = $.brace(
+        squery = $.of(
                     $.equal("A", 1).and().equal("B", 2)
                 ).or().equal("C", 3).desc("D").asc("E").limit(10);
 

@@ -244,8 +244,8 @@ public class Squery {
         return this;
     }
 
-    public Squery brace(Squery squery) {
-        return Builder.brace(squery);
+    public Squery of(Squery squery) {
+        return Builder.of(squery);
     }
 
     public Squery begin() {
@@ -552,7 +552,7 @@ public class Squery {
             return builder;
         }
 
-        public static Squery brace(Squery squery) {
+        public static Squery of(Squery squery) {
             squery.selection = "(" + squery.selection + ")";
             return squery;
         }
