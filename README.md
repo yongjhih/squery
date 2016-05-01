@@ -179,7 +179,8 @@ squery.MainTests > testIn PASSED
 
 ## See Also
 
-ref. https://gist.github.com/yongjhih/e68184ec75d56d9e2804
+* ref. https://gist.github.com/yongjhih/e68184ec75d56d9e2804
+* https://github.com/reinaldoarrosi/QueryBuilder
 
 ## License
 
