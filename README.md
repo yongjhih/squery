@@ -185,6 +185,7 @@ squery.MainTests > testIn PASSED
 * https://github.com/querydsl/querydsl/tree/master/querydsl-sql
 * http://www.jooq.org/
 * http://pnowy.github.io/NativeCriteria/
+* https://gist.github.com/fluxtah/2559252
 
 ## License
 
