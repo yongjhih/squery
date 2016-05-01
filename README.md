@@ -181,6 +181,7 @@ squery.MainTests > testIn PASSED
 
 * ref. https://gist.github.com/yongjhih/e68184ec75d56d9e2804
 * https://github.com/reinaldoarrosi/QueryBuilder
+* https://github.com/nhaarman/SQLiteBuilder
 
 ## License
 
