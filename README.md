@@ -1,7 +1,6 @@
 # 8Query
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-8Query-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1846)
-![JitPack](https://img.shields.io/github/tag/yongjhih/squery.svg?label=maven)
 [![Download](https://api.bintray.com/packages/yongjhih/maven/squery/images/download.svg) ](https://bintray.com/yongjhih/maven/squery/_latestVersion)
 [![Build Status](https://travis-ci.org/yongjhih/squery.svg)](https://travis-ci.org/yongjhih/squery)
 [![javadoc.io](https://javadocio-badges.herokuapp.com/com.infstory/squery/badge.svg)](http://www.javadoc.io/doc/com.infstory/squery/)
