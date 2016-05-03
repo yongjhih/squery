@@ -4,10 +4,14 @@ buildscript {
     }
 
     dependencies {
+        classpath 'com.novoda:bintray-release:0.3.4'
     }
 }
 
 apply plugin: 'java'
+
+sourceCompatibility = JavaVersion.VERSION_1_6
+targetCompatibility = JavaVersion.VERSION_1_6
 
 repositories {
     jcenter()
@@ -30,4 +34,27 @@ test {
     }
 }
 
-apply from: 'mvn-push.gradle'
+apply plugin: 'com.novoda.bintray-release'
+
+def getRepositoryUsername() {
+    return hasProperty('BINTRAY_USER') ? BINTRAY_USER : ""
+}
+
+def getRepositoryPassword() {
+    return hasProperty('BINTRAY_KEY') ? BINTRAY_KEY : ""
+}
+
+publish {
+    userOrg = 'yongjhih'
+    groupId = 'com.infstory'
+    artifactId = 'squery'
+    publishVersion = '1.0.2'
+    desc = 'Simple Query Builder'
+    website = 'https://github.com/yongjhih/squery'
+    bintrayUser = getRepositoryUsername()
+    bintrayKey = getRepositoryPassword()
+    dryRun = false
+}
+
+apply plugin: 'maven'
+apply from: 'javadoc.gradle'
